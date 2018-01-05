@@ -34,7 +34,6 @@
       "floppy_files": [
         "floppy/eval-win2012r2-standard/Autounattend.xml",
         "floppy/00-run-all-scripts.cmd",
-        "floppy/install-winrm.cmd",
         "floppy/powerconfig.bat",
         "floppy/01-install-wget.cmd",
         "floppy/_download.cmd",
@@ -42,7 +41,8 @@
         "floppy/passwordchange.bat",
         "floppy/openssh.bat",
         "floppy/disablewinupdate.bat",
-        "floppy/zz-start-transports.cmd"
+        "floppy/zz-start-transports.cmd",
+        "floppy/install-winrm.cmd"
       ],
       "guest_os_type": "windows8srv-64",
       "headless": "{{ user `headless` }}",
