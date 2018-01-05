@@ -54,6 +54,28 @@
                     <DiskID>0</DiskID>
                     <WillWipeDisk>true</WillWipeDisk>
                 </Disk>
+                <Disk wcm:action="add">
+                    <DiskID>1</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
+                    <CreatePartitions>
+                        <!-- Data partition -->
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order> 
+                            <Type>Primary</Type> 
+                            <Extend>true</Extend> 
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <!-- Data partition -->
+                        <ModifyPartition wcm:action="add">
+                            <Order>1</Order> 
+                            <PartitionID>1</PartitionID> 
+                            <Label>Applications</Label> 
+                            <Letter>F</Letter> 
+                            <Format>NTFS</Format> 
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                </Disk>
                 <WillShowUI>OnError</WillShowUI>
             </DiskConfiguration>
         </component>

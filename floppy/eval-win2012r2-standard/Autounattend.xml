@@ -43,7 +43,7 @@
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
                             <Active>true</Active>
-                            <Extend>true</Extend>
+                            <Extend>false</Extend>
                             <Format>NTFS</Format>
                             <Letter>C</Letter>
                             <Order>1</Order>
@@ -53,6 +53,28 @@
                     <DiskID>0</DiskID>
                     <WillWipeDisk>true</WillWipeDisk>
                 </Disk>
+                <Disk wcm:action="add">
+                    <DiskID>1</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
+                    <CreatePartitions>
+                        <!-- Data partition -->
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Type>Primary</Type>
+                            <Extend>true</Extend>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <!-- Data partition -->
+                        <ModifyPartition wcm:action="add">
+                            <Order>1</Order>
+                            <PartitionID>1</PartitionID>
+                            <Label>Applications</Label>
+                            <Letter>F</Letter>
+                            <Format>NTFS</Format>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                </Disk>
             </DiskConfiguration>
         </component>
     </settings>
@@ -60,8 +82,8 @@
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>vagrant</Value>
-                    <PlainText>true</PlainText>
+                    <Value>dgBhAGcAcgBhAG4AdABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+                    <PlainText>false</PlainText>
                 </AdministratorPassword>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
@@ -70,8 +92,8 @@
                         <Group>Administrators</Group>
                         <Name>vagrant</Name>
                         <Password>
-                            <Value>vagrant</Value>
-                            <PlainText>true</PlainText>
+                            <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
+                            <PlainText>false</PlainText>
                         </Password>
                     </LocalAccount>
                 </LocalAccounts>
@@ -80,8 +102,8 @@
                 <Enabled>true</Enabled>
                 <Username>vagrant</Username>
                 <Password>
-                    <Value>vagrant</Value>
-                    <PlainText>true</PlainText>
+                    <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
+                    <PlainText>false</PlainText>
                 </Password>
             </AutoLogon>
             <FirstLogonCommands>
@@ -149,5 +171,5 @@
             <EnableLUA>false</EnableLUA>
         </component>
     </settings>
-    <cpi:offlineImage cpi:source="catalog://winryadkx64/users/misheska/github/box-cutter/windows-vm/wsim/wineval/win2012r2/install_windows server 2012 r2 serverdatacenter.clg" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+    <cpi:offlineImage cpi:source="catalog:c:/users/jeffrey.druin/documents/vagrant/windows/wsim/win2012r2update/x64/install_windows server 2012 r2 serverstandard.clg" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>
