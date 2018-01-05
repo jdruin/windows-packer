@@ -13,36 +13,7 @@
         "floppy/passwordchange.bat",
         "floppy/openssh.bat",
         "floppy/disablewinupdate.bat",
-        "floppy/zz-start-transports.cmd",
-        "floppy/zzz-install-winrm.cmd"
-      ],
-      "generation": "1",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "sha1",
-      "iso_url": "{{ user `iso_url` }}",
-      "ram_size": "4000",
-      "shutdown_command": "{{ user `shutdown_command`}}",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
-      "ssh_wait_timeout": "100000s",
-      "type": "hyperv-iso",
-      "vm_name": "eval-win2012r2-standard-ssh",
-      "enable_dynamic_memory": "true"
-    },
-    {
-      "disk_size": "{{user `disk_size`}}",
-      "floppy_files": [
-        "floppy/eval-win2012r2-standard/Autounattend.xml",
-        "floppy/00-run-all-scripts.cmd",
-        "floppy/powerconfig.bat",
-        "floppy/01-install-wget.cmd",
-        "floppy/_download.cmd",
-        "floppy/_packer_config.cmd",
-        "floppy/passwordchange.bat",
-        "floppy/openssh.bat",
-        "floppy/disablewinupdate.bat",
-        "floppy/zz-start-transports.cmd",
-        "floppy/install-winrm.cmd"
+        "floppy/zz-start-transports.cmd"
       ],
       "guest_os_type": "windows8srv-64",
       "headless": "{{ user `headless` }}",
@@ -68,16 +39,17 @@
       "floppy_files": [
         "floppy/eval-win2012r2-standard/Autounattend.xml",
         "floppy/00-run-all-scripts.cmd",
-        "floppy/install-winrm.cmd",
+        "floppy/install-octopusdeploy.cmd",
         "floppy/powerconfig.bat",
         "floppy/01-install-wget.cmd",
         "floppy/_download.cmd",
         "floppy/_packer_config.cmd",
         "floppy/passwordchange.bat",
         "floppy/openssh.bat",
-        "floppy/disablewinupdate.bat",
         "floppy/zz-start-transports.cmd",
-        "floppy/oracle-cert.cer"
+        "floppy/oracle-cert.cer",
+        "floppy/update.bat",
+        "floppy/zzz-install-winrm.cmd"
       ],
       "guest_additions_mode": "attach",
       "guest_os_type": "Windows2012_64",
@@ -90,7 +62,7 @@
       "post_shutdown_delay": "30s",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
-      "ssh_wait_timeout": "10000s",
+      "ssh_wait_timeout": "10000000s",
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
@@ -106,10 +78,38 @@
           "2"
         ],
         [
+          "modifyvm", 
+          "{{.Name}}",
+           "--natdnshostresolver1", 
+           "on"
+        ],
+        [
           "setextradata",
           "{{.Name}}",
           "VBoxInternal/CPUM/CMPXCHG16B",
           "1"
+        ],
+        [ "createhd",
+          "--format",
+          "VMDK",
+          "--filename",
+          "box/virtualbox/{{.Name}}-disk2.vmdk",
+          "--variant",
+          "STREAM",
+          "--size",
+          "10000" 
+        ],
+        [
+          "storageattach",
+          "{{.Name}}",
+          "--storagectl",
+          "SATA Controller",
+          "--port",
+          "1",
+          "--type",
+          "hdd",
+          "--medium",
+          "box/virtualbox/{{.Name}}-disk2.vmdk" 
         ]
       ],
       "vm_name": "eval-win2012r2-standard-ssh"

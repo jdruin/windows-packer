@@ -27,7 +27,8 @@
       "winrm_username": "vagrant",
       "type": "hyperv-iso",
       "vm_name": "eval-win2008r2-standard",
-      "enable_dynamic_memory": "true"
+      "enable_dynamic_memory": "true",
+      "disk_additional_size" : [10000]
     },
     {
       "communicator": "winrm",
@@ -70,13 +71,14 @@
         "floppy/01-install-wget.cmd",
         "floppy/_download.cmd",
         "floppy/_packer_config.cmd",
+        "floppy/disablewinupdate.bat",
         "floppy/fixnetwork.ps1",
+        "floppy/install-winrm.cmd",
         "floppy/oracle-cert.cer",
         "floppy/passwordchange.bat",
         "floppy/powerconfig.bat",
         "floppy/win2008r2-standard/Autounattend.xml",
-        "floppy/zz-start-transports.cmd",
-        "floppy/zzz-install-winrm.cmd"
+        "floppy/zz-start-transports.cmd"
       ],
       "guest_additions_mode": "attach",
       "guest_os_type": "Windows2008_64",
