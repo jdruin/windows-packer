@@ -2,6 +2,7 @@
   "builders": [
     {
       "communicator": "winrm",
+      "disk_additional_size" : ["{{user `disk_size`}}"],
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "floppy/eval-win2012r2-standard/Autounattend.xml",
@@ -11,6 +12,7 @@
         "floppy/_download.cmd",
         "floppy/_packer_config.cmd",
         "floppy/passwordchange.bat",
+        "floppy/zzz-update.bat",
         "floppy/zz-start-transports.cmd",
         "floppy/zzz-install-winrm.cmd"
       ],
@@ -26,8 +28,7 @@
       "winrm_username": "vagrant",
       "type": "hyperv-iso",
       "vm_name": "eval-win2012r2-standard",
-      "enable_dynamic_memory": "true",
-      "disk_additional_size" : [10000]
+      "enable_dynamic_memory": "true"
     },
     {
       "communicator": "winrm",
@@ -40,6 +41,7 @@
         "floppy/eval-win2012r2-standard/Autounattend.xml",
         "floppy/fixnetwork.ps1",
         "floppy/passwordchange.bat",
+        "floppy/zzz-update.bat",
         "floppy/powerconfig.bat",
         "floppy/zz-start-transports.cmd",
         "floppy/zzz-install-winrm.cmd"

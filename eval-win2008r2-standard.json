@@ -2,7 +2,7 @@
   "builders": [
     {
       "communicator": "winrm",
-      "disk_size": "{{user `disk_size`}}",
+      "disk_additional_size" : ["{{user `disk_size`}}"],
       "floppy_files": [
         "floppy/win2008r2-standard/Autounattend.xml",
         "floppy/00-run-all-scripts.cmd",
@@ -27,8 +27,7 @@
       "winrm_username": "vagrant",
       "type": "hyperv-iso",
       "vm_name": "eval-win2008r2-standard",
-      "enable_dynamic_memory": "true",
-      "disk_additional_size" : [10000]
+      "enable_dynamic_memory": "true"      
     },
     {
       "communicator": "winrm",
